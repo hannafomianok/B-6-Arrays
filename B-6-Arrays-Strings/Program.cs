@@ -15,10 +15,10 @@ namespace Base.Lesson_6
             //Exercise3();
             //Ex3ByBubbleSort();
             //Exercise5();
-            //Exercise6();
-            var numbers = GetInitialValues();
-            PrintValues(numbers);
-            Play(numbers);
+            Exercise6();
+            //var numbers = GetInitialValues();
+            //PrintValues(numbers);
+            //Play(numbers);
 
             Console.ReadKey();
         }
@@ -160,8 +160,11 @@ namespace Base.Lesson_6
             var zeroI = 3;
             var zeroJ = 3;
 
-            while (true)
+
+
+            while (zeroI < 4 && zeroJ < 4)
             {
+
                 char movement = Convert.ToChar(Console.ReadLine());
                 var i = zeroI;
                 var j = zeroJ;
@@ -184,15 +187,25 @@ namespace Base.Lesson_6
                         break;
                 }
 
-                var swap = arr[i, j];
-                arr[i, j] = arr[zeroI, zeroJ];
-                arr[zeroI, zeroJ] = swap;
+                try
+                {
+                    var swap = arr[i, j];
+                    arr[i, j] = arr[zeroI, zeroJ];
+                    arr[zeroI, zeroJ] = swap;
 
-                zeroI = i;
-                zeroJ = j;
+                    zeroI = i;
+                    zeroJ = j;
 
-                PrintValues(arr);
+                    PrintValues(arr);
+                }
+
+                catch(IndexOutOfRangeException )
+                {
+                    Console.WriteLine("You got beyond the field!!!");
+                }
+
             }
+                
         }
 
 
@@ -216,11 +229,23 @@ namespace Base.Lesson_6
         {
             Console.WriteLine("Введите стихотворние");
             string poem = Console.ReadLine();
+
             poem = poem.Replace("о", "а")
                        .Replace("л", "ль")
                        .Replace("ть", "т")
                        .Replace(';', '\n');
-            Console.WriteLine(poem);
+
+            string[] arrpoem = poem.Split(' ');
+            Array.Sort(arrpoem);
+
+            foreach (string word in arrpoem)
+            {
+                Console.Write(word + ' ');
+            }
+
+
+                  
+            
         }
     }
 }
